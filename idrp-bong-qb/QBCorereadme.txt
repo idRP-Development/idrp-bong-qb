@@ -28,6 +28,8 @@ Using interact-sound for sound fx
 
 https://github.com/plunkettscott/interact-sound
 
-Sound files in Assets Folder
+Sound files in Assets Folder of Prop Pack
+
+Image files in Assets Folder of Prop Pack
 
 If using your own props edit config.lua with prop details
