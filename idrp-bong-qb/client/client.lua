@@ -7,7 +7,6 @@ RegisterNetEvent('idrp_BongModel', function(itemName)
 	local anim = "glass_hold"
 	QBCore.Functions.TriggerCallback('idrp:BongItems', function(lighter)
 		if lighter then
-			print('found next bit')
 			for _, v in pairs(Config.Bong_Models) do
 				if v.itemName == itemName then
 					Prop_name = v.prop
@@ -21,12 +20,20 @@ RegisterNetEvent('idrp_BongModel', function(itemName)
 									Wait(1)
 								end
 								RequestModel(Prop_name)
+								while not HasModelLoaded(Prop_name) do
+									Wait(0)
+								end
 								RequestModel(Prop_name2)
+								while not HasModelLoaded(Prop_name2) do
+									Wait(0)
+								end
 								TaskPlayAnim(ped, animdict, anim, 8.00, -8.00, -1, (2 + 16 + 32), 0.00, false, false, false)
-								local x,y,z = table.unpack(GetEntityCoords(ped))
+								local x, y, z = table.unpack(GetEntityCoords(ped))
+								local coords = table.unpack( v.coords)		--prop placement
+								local coords2 = table.unpack(v.rcoords)		--prop rotation
 								Bongmodel = CreateObject(GetHashKey(Prop_name), x, y, z+0.2, true,  true, true)
-								Lightermodel = CreateObject(GetHashKey(Prop_name2), x, y, z+0.2, true,  true, true)
-								AttachEntityToEntity(Bongmodel, ped, GetPedBoneIndex(ped, v.bone), v.x, v.y, v.z, v.xr, v.yr, v.zr, true, true, false, true, 1, true)
+								Lightermodel = CreateObject(GetHashKey(Prop_name2), x, y, z +0.2, true,  true, true)
+								AttachEntityToEntity(Bongmodel, ped, GetPedBoneIndex(ped, v.bone), coords.x, coords.y, coords2.z, coords2.x, coords2.y, coords2.z, true, true, false, true, 1, true)
 								AttachEntityToEntity(Lightermodel, ped, GetPedBoneIndex(ped, 58866),0.11, -0.02, 0.001, -120.0, 0.0, 0.0, true, true, false, true, 1, true)
 								lib.notify({description = Config.Ox_lib.take_hit, type = 'success', position = Config.Ox_lib.position, duration = Config.Ox_lib.small_duration})	--comment if ox-lib Notify
 								--QBCore.Functions.Notify('[E] to take a Hit [G] to stash bong', 'success', 9500)		----uncomment if QBCore Notify
@@ -61,6 +68,9 @@ RegisterNetEvent("idrp:BongReset", function(source)
 	Wait(1)
 	end
 	RequestModel(Prop_name2)
+	while not HasModelLoaded(Prop_name2) do
+		Wait(0)
+	end
 	TaskPlayAnim(ped, animdict, anim, 8.00, -8.00, -1, (2 + 16 + 32), 0.00, false, false, false)
 	local x,y,z = table.unpack(GetEntityCoords(ped))
 	Lightermodel = CreateObject(GetHashKey(Prop_name2), x, y, z+0.2, true,  true, true)
@@ -93,6 +103,9 @@ RegisterNetEvent("idrp:BongHit", function()
 	DeleteObject(Lightermodel)
 	SetModelAsNoLongerNeeded(Lightermodel)
 	RequestModel(Prop_name3)
+	while not HasModelLoaded(Prop_name3) do
+		Wait(0)
+	end
 	TaskPlayAnim(ped, animdict, anim, 8.00, -8.00, -1, (2 + 16 + 32), 0.00, false, false, false)
 	local x,y,z = table.unpack(GetEntityCoords(ped))
 	LightermodelLit = CreateObject(GetHashKey(Prop_name3), x, y, z+0.2, true,  true, true)
