@@ -2,7 +2,7 @@ This basic Bong and Joint script is based on my Bong Pack available on Tebex:
 
 https://idart.tebex.io/category/fivem-resources
 
-Images in Assets folder.
+Images in Assets folder of Prop Pack
 
 Add to qbcore/shared/items.lua
 
@@ -40,3 +40,5 @@ Sound files in Assets Folder
 If using your own props edit config.lua with prop details.
 
 Edit Config.lua to your servers needs.
+
+Cheers ZenKat

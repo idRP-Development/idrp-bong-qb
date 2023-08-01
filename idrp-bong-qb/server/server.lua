@@ -6,7 +6,6 @@ for _, v in pairs(Config.Bong_Models) do
 		local Player = QBCore.Functions.GetPlayer(source)
 		if Player.Functions.GetItemBySlot(item.slot) then
 			TriggerClientEvent('idrp_BongModel', source, v.itemName)
-			print('looking for next bit')
 		end
 	end)
 end

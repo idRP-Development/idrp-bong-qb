@@ -147,7 +147,6 @@ Citizen.CreateThread(function()
 		end
 		if IsPlayerAbleToHuff then
 			if IsControlPressed(0, Config.controls.use_bong) then
-				print("pressed 3")
 				Wait(Config.controls.activate_time)
 				if IsControlPressed(0, Config.controls.use_bong) then
 					TriggerEvent("idrp:BongHit", 0)
