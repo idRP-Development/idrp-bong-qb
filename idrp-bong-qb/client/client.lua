@@ -29,11 +29,9 @@ RegisterNetEvent('idrp_BongModel', function(itemName)
 								end
 								TaskPlayAnim(ped, animdict, anim, 8.00, -8.00, -1, (2 + 16 + 32), 0.00, false, false, false)
 								local x, y, z = table.unpack(GetEntityCoords(ped))
-								local coords = table.unpack( v.coords)		--prop placement
-								local coords2 = table.unpack(v.rcoords)		--prop rotation
 								Bongmodel = CreateObject(GetHashKey(Prop_name), x, y, z+0.2, true,  true, true)
 								Lightermodel = CreateObject(GetHashKey(Prop_name2), x, y, z +0.2, true,  true, true)
-								AttachEntityToEntity(Bongmodel, ped, GetPedBoneIndex(ped, v.bone), coords.x, coords.y, coords2.z, coords2.x, coords2.y, coords2.z, true, true, false, true, 1, true)
+								AttachEntityToEntity(Bongmodel, ped, GetPedBoneIndex(ped, v.bone), v.x, v.y, v.z, v.xr, v.yr, v.zr, true, true, false, true, 1, true)
 								AttachEntityToEntity(Lightermodel, ped, GetPedBoneIndex(ped, 58866),0.11, -0.02, 0.001, -120.0, 0.0, 0.0, true, true, false, true, 1, true)
 								lib.notify({description = Config.Ox_lib.take_hit, type = 'success', position = Config.Ox_lib.position, duration = Config.Ox_lib.small_duration})	--comment if ox-lib Notify
 								--QBCore.Functions.Notify('[E] to take a Hit [G] to stash bong', 'success', 9500)		----uncomment if QBCore Notify
